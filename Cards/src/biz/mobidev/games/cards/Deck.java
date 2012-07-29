@@ -18,8 +18,6 @@ public class Deck {
 	public Deck() {
 		super();
 		this.cards = new ArrayList<Card>();
-//		fillSorted();
-//		reshuffleDeck();
 	}
 
 	public void putOnTop(Card aCard) {
@@ -50,10 +48,27 @@ public class Deck {
 	public void fillSorted() {
 		for (Suit suit : Suit.values())
 			for (Rank rank : Rank.values())
-				putUnderBottom(new Card(suit, rank));
+				if (rank.compareTo(Rank.Five) > 0)
+					putUnderBottom(new Card(suit, rank));
 	}
 	
 	public void reshuffleDeck() {
 		Collections.shuffle(cards);
+	}
+
+	public Card peekTop() {
+		return cards.get(0);
+	}
+	
+	public Card peekTop(int indexToPeek) {
+		return cards.get(indexToPeek - 1);
+	}
+
+	public Card peekBottom() {
+		return cards.get(cards.size() - 1);
+	}
+	
+	public Card peekBottom(int indexToPeek) {
+		return cards.get(cards.size() - indexToPeek);
 	}
 }

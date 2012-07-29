@@ -9,7 +9,9 @@ package biz.mobidev.games.cards;
  */
 public class Table {
 	
+	Deck bank = new Deck();
+	
 	public void putOn(Card aCard) {
-		
+		bank.putOnTop(aCard);
 	}
 }

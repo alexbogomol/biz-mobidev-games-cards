@@ -11,9 +11,27 @@ public class EntryPoint {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO next create classes: Game | Table
 		
-		DeckOperationsTest();
+		TestGameController();
+	}
+	
+	private static void TestGameController() {
+		
+		Table tbl = new Table();
+		
+		Deck bank = new Deck();
+		bank.fillSorted();
+		bank.reshuffleDeck();
+		
+		Player pl1 = new Player("Sash", new Deck(), tbl, PlayerType.Human);
+		Player pl2 = new Player("Josh", new Deck(), tbl, PlayerType.Automatic);
+		
+		Game game = new Game(tbl);
+		game.attachPlayer(pl1);
+		game.attachPlayer(pl2);
+		
+		System.out.println("Hello!");
+		game.playTurn();
 	}
 	
 	static void DeckOperationsTest() {
