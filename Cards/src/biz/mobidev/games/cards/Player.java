@@ -9,11 +9,11 @@ public class Player {
 	private Table table;
 	private PlayerType playerType;
 	
-	public Player(String name, Deck bank, Table table, PlayerType type) {
+	public Player(String name, Table table, PlayerType type) {
 		this.name = name;
-		this.bank = bank;
 		this.table = table;
 		this.playerType = type;
+		this.bank = new Deck();
 	}
 	
 	public String getName() {
@@ -31,6 +31,9 @@ public class Player {
 		
 		Card aCard = bank.takeFromTop();
 		table.putOn(aCard);
+		
+		// print report
+		System.out.println(this.getName() + "'s turn: " + aCard);
 	}
 	
 	@Override
@@ -41,15 +44,27 @@ public class Player {
 	}
 	
 	public void takeBankFromTable() {
+		
+		int cardsInBank = table.bank.getCount();
 
 		while (table.bank.getCount() != 0) {
 			Card aCard = table.bank.takeFromTop();
 			this.bank.putUnderBottom(aCard);
 		}
+		
+		// print report
+		System.out.println("Player " + this.getName() + 
+							" grabs a bank of " + cardsInBank + 
+							" cards");
+		System.out.println(this);
 	}
 	
 	public void waitForUserHitEnter() {
 		Scanner sc = new Scanner(System.in);
 		while(!sc.nextLine().equals(""));
+	}
+
+	public void takeCard(Card aCard) {
+		this.bank.putOnTop(aCard);
 	}
 }

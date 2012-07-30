@@ -24,6 +24,11 @@ public class Game extends TurnBasedGame {
 		emptiedPlayer = null;
 	}
 	
+	public void play() {
+		turningPlayer = players.get(0);
+		this.playTurn();
+	}
+
 	public void attachPlayer(Player aPlayer) {
 		players.add(aPlayer);
 	}
@@ -82,17 +87,21 @@ public class Game extends TurnBasedGame {
 	@Override
 	public boolean checkTurnPostConditions() {
 		
+		// if this is a first turn in the round - just continue
+		if (table.bank.getCount() < 2)
+			return false;
+			
 		// look at last and pre-last card on the table
 		Card lastPutted = table.bank.peekTop(1);
 		Card prevPutted = table.bank.peekTop(2);
 		
-		// are they equal?
+		// are they of equal suit?
 		return lastPutted.equalSuit(prevPutted);
 	}
 	
 	/* 
 	 * Take the table bank by the turning player
-	 * Change turning player
+	 * Change turning player (?)
 	 * Continue the game
 	 */
 	@Override
@@ -125,5 +134,13 @@ public class Game extends TurnBasedGame {
 	private void applauseOurWinner(Player aPlayer) {
 		System.out.println("Congratulations, " + aPlayer.getName() + 
 						   "! You won!");
+	}
+
+	public void handOutCards(Deck gameBank, Player ... pl) {
+		while (gameBank.getCount() != 0)
+			for (Player player : pl) {
+				Card aCard = gameBank.takeFromTop();
+				player.takeCard(aCard);
+			}
 	}
 }

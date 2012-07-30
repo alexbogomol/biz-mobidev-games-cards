@@ -8,11 +8,11 @@ public abstract class TurnBasedGame {
 
 	public void playTurn() {
 		
-		if (checkTurnPreConditions() == true) {
+		if (checkTurnPreConditions()) {
 			
 			handleTurnPreConditionSucceed();
 			
-			if (checkTurnPostConditions() == true) {
+			if (checkTurnPostConditions()) {
 				handleTurnPostConditionSucceed();
 			} else {
 				handleTurnPostConditionFailed();

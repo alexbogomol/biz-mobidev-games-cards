@@ -15,23 +15,27 @@ public class EntryPoint {
 		TestGameController();
 	}
 	
-	private static void TestGameController() {
+	static void TestGameController() {
 		
 		Table tbl = new Table();
 		
-		Deck bank = new Deck();
-		bank.fillSorted();
-		bank.reshuffleDeck();
+		Deck gameBank = new JassDeck();
+		gameBank.fill();
+		gameBank.shuffle();
 		
-		Player pl1 = new Player("Sash", new Deck(), tbl, PlayerType.Human);
-		Player pl2 = new Player("Josh", new Deck(), tbl, PlayerType.Automatic);
+		Player pl1 = new Player("Sash", tbl, PlayerType.Human);
+		Player pl2 = new Player("Josh", tbl, PlayerType.Automatic);
 		
 		Game game = new Game(tbl);
 		game.attachPlayer(pl1);
 		game.attachPlayer(pl2);
+		game.handOutCards(gameBank, pl1, pl2);
 		
-		System.out.println("Hello!");
-		game.playTurn();
+		System.out.println("Game started!");
+		System.out.println(pl1);
+		System.out.println(pl2);
+		
+		game.play();
 	}
 	
 	static void DeckOperationsTest() {

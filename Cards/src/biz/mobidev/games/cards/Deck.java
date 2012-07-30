@@ -45,14 +45,18 @@ public class Deck {
 		return cards.size();
 	}
 	
-	public void fillSorted() {
+	public void fill() {
 		for (Suit suit : Suit.values())
 			for (Rank rank : Rank.values())
-				if (rank.compareTo(Rank.Five) > 0)
+				if (suffitientCardCheck(suit, rank))
 					putUnderBottom(new Card(suit, rank));
 	}
 	
-	public void reshuffleDeck() {
+	public boolean suffitientCardCheck(Suit aSuit, Rank aRank) {
+		return true;
+	}
+	
+	public void shuffle() {
 		Collections.shuffle(cards);
 	}
 
