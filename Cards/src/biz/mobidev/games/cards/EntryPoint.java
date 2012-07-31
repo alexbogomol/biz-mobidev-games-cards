@@ -1,7 +1,18 @@
+/*
+ * Classname			: EntryPoint
+ * 
+ * Version information	: 1.0 (Release to MobiDev)
+ *
+ * Date					: July 31, 2012
+ * 
+ * Copyright notice		: alexander.bogomol
+ */
+
 package biz.mobidev.games.cards;
 
 /*
- * all terms and subjects are taken from:
+ * This an entry point of application.
+ * All terms and subjects are taken from:
  * http://en.wikipedia.org/wiki/Suit_(cards)
  */
 
@@ -12,10 +23,10 @@ public class EntryPoint {
 	 */
 	public static void main(String[] args) {
 		
-		TestGameController();
+		gameSession();
 	}
 	
-	static void TestGameController() {
+	static void gameSession() {
 		
 		Table tbl = new Table();
 		
@@ -26,7 +37,7 @@ public class EntryPoint {
 		Player pl1 = new Player("Sash", tbl, PlayerType.Human);
 		Player pl2 = new Player("Josh", tbl, PlayerType.Automatic);
 		
-		Game game = new Game(tbl);
+		PianicaGame game = new PianicaGame(tbl);
 		game.attachPlayer(pl1);
 		game.attachPlayer(pl2);
 		game.handOutCards(gameBank, pl1, pl2);
@@ -38,7 +49,7 @@ public class EntryPoint {
 		game.play();
 	}
 	
-	static void DeckOperationsTest() {
+	static void deckOperationsTest() {
 		
 		Deck aDeck = new Deck();
 		
@@ -63,7 +74,7 @@ public class EntryPoint {
 		System.out.println(aDeck);
 	}
 	
-	static void CardOperationTest() {
+	static void cardOperationTest() {
 		
 		System.out.println("Hello World");
 		

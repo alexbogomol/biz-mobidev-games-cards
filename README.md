@@ -1,4 +1,4 @@
 biz-mobidev-games-cards
 =======================
 
-Some Text Here
+My candidate Java Language Test for MobiDev
