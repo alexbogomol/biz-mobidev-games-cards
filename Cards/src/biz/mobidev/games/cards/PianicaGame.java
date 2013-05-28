@@ -56,7 +56,7 @@ public class PianicaGame extends TurnBasedGame {
 		emptiedPlayer = null;
 		
 		for (Player player : players)
-			if (player.hasEmptyBank() == true) {
+			if (player.hasEmptyBank()) {
 				result = false;
 				emptiedPlayer = player;
 				break;
